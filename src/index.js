@@ -1,0 +1,40 @@
+import breadcrumbs from './breadcrumbs';
+const getParameter = require('get-parameter');
+
+const baseConfig = {
+	cookieName: '_hansel',
+	watching: [
+		'utm_term',
+		'utm_source',
+		'utm_campaign',
+		'utm_content',
+		'utm_medium',
+		'email'
+	]
+};
+
+const Stack = {
+
+	breadcrumbs: null,
+
+	init: function(options) {
+		const config = options || {};
+		this.breadcrumbs = new breadcrumbs({...baseConfig, ...config});
+		return this.breadcrumbs;
+	},
+
+	stage: function() {
+		const _this = this;
+		this.breadcrumbs.config.watching.forEach((item, index) => {
+			const paramValue = getParameter(item);
+			if (paramValue) _this.cup.upsert(item, paramValue);
+		});
+	}
+
+};
+
+const BreadCrumbs = Stack.init();
+
+Stack.stage();
+
+export default BreadCrumbs;
