@@ -1,5 +1,5 @@
 {
-  "name": "breadcrumbs",
+  "name": "first-party-breadcrumbs",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
