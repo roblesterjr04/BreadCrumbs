@@ -27,8 +27,10 @@ const Stack = {
 		const _this = this;
 		this.breadcrumbs.config.watching.forEach((item, index) => {
 			const paramValue = getParameter(item);
-			if (paramValue) _this.cup.upsert(item, paramValue);
+			if (paramValue) _this.breadcrumbs.upsert(item, paramValue);
 		});
+		const event = new CustomEvent('breadcrumbs.init', {detail: _this.breadcrumbs});
+		document.dispatchEvent(event);
 	}
 
 };

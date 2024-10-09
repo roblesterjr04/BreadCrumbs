@@ -9,6 +9,9 @@
   <pre id="output">Waiting...</pre>
   <script>
 	// Your JS code can access MyPackage from the global variable
+    document.addEventListener('breadcrumbs.init', function(e) {
+      console.log(e.detail);
+    });
 	setTimeout(function() {
 		document.getElementById('output').innerHTML = BreadCrumbs.dump() || 'Empty';
 	}, 1000);

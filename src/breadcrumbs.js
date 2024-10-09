@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 
-class cup extends EventTarget {
+class breadcrumbs extends EventTarget {
 
 	constructor(config) {
 		super();
@@ -69,4 +69,4 @@ class cup extends EventTarget {
 
 }
 
-export default cup;
+export default breadcrumbs;
