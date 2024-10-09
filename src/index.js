@@ -21,17 +21,19 @@ const Stack = {
 	init: function(options) {
 		const config = options || {};
 		this.breadcrumbs = new breadcrumbs({...baseConfig, ...config});
+		const event = new CustomEvent('breadcrumbs.initialized', {detail: this.breadcrumbs});
+		document.dispatchEvent(event);
 		return this.breadcrumbs;
 	},
 
 	stage: function() {
+		const event = new CustomEvent('breadcrumbs.before_init', {detail: this.breadcrumbs});
+		document.dispatchEvent(event);
 		const _this = this;
 		this.breadcrumbs.config.watching.forEach((item, index) => {
 			const paramValue = getParameter(item);
 			if (paramValue) _this.breadcrumbs.upsert(item, paramValue);
 		});
-		const event = new CustomEvent('breadcrumbs.init', {detail: _this.breadcrumbs});
-		document.dispatchEvent(event);
 		if (this.breadcrumbs.config.formfill) this.breadcrumbs.formfill();
 	}
 
