@@ -3,6 +3,7 @@ const getParameter = require('get-parameter');
 
 const baseConfig = {
 	cookieName: '_hansel',
+	fillOnLoad: true,
 	watching: [
 		'utm_term',
 		'utm_source',
@@ -31,6 +32,7 @@ const Stack = {
 		});
 		const event = new CustomEvent('breadcrumbs.init', {detail: _this.breadcrumbs});
 		document.dispatchEvent(event);
+		if (this.breadcrumbs.config.fillOnLoad) this.breadcrumbs.fillform();
 	}
 
 };
