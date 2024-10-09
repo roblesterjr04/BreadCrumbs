@@ -1,36 +1,40 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
-  entry: './src/index.js',  // Path to your entry file
+
+const commonjsConfig = {
+  entry: './src/index.js',
   output: {
+	filename: 'index.cjs.js',
 	path: path.resolve(__dirname, 'dist'),
-	filename: 'breadcrumbs.js',  // Output file name
-	library: 'BreadCrumbs',  // Name of the global variable when used in a browser
-	libraryTarget: 'umd',  // This makes the package available as both a module and a standalone script
+	library: 'BreadCrumbs',  // Exposes the library as a global variable
+	libraryTarget: 'umd',
 	globalObject: 'this',  // To ensure compatibility across environments (e.g., Node.js, Browser)
 	libraryExport: 'default',
   },
-  module: {
-	rules: [
-	  {
-		test: /\.js$/,
-		exclude: /node_modules/,
-		use: {
-		  loader: 'babel-loader',
-		  options: {
-			presets: ['@babel/preset-env'],  // Compile modern JS down to ES5
-		  },
-		},
-	  },
-	],
-  },
   plugins: [
-	  new HtmlWebpackPlugin({
-		template: './src/index.html',  // Path to your HTML file
-		filename: 'index.html',  // Output file name
-	  }),
-	],
-  mode: 'development',  // You can use 'development' during development
-  //devtool: 'source-map',
+	new HtmlWebpackPlugin({
+	  template: './src/index.html',  // Path to your HTML file
+	  filename: 'index.html',  // Output file name
+	}),
+  ],
+  mode: 'production',
 };
+
+// ES Module Build Configuration
+const esmConfig = {
+  entry: './src/index.js',
+  output: {
+	filename: 'index.esm.js',
+	path: path.resolve(__dirname, 'dist'),
+	library: {
+	  type: 'module',  // ES Module output
+	},
+  },
+  experiments: {
+	outputModule: true,  // Enable ES module output
+  },
+  mode: 'production',
+};
+
+module.exports = [commonjsConfig, esmConfig];

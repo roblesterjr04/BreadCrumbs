@@ -1,22 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Package Test</title>
-<script defer src="breadcrumbs.js"></script></head>
-<body>
-  <pre id="output">Waiting...</pre>
-  <script>
-	// Your JS code can access MyPackage from the global variable
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>My Package Test</title><script defer="defer" src="index.cjs.js"></script></head><body><pre id="output">Waiting...</pre><script>// Your JS code can access MyPackage from the global variable
     document.addEventListener('breadcrumbs.init', function(e) {
       console.log(e.detail);
     });
 	setTimeout(function() {
 		document.getElementById('output').innerHTML = BreadCrumbs.dump() || 'Empty';
-	}, 1000);
-  </script>
-  <input type="text" name="email" />
-  <input type="text" name="utm_content" />
-</body>
-</html>
+	}, 1000);</script><input name="email"/> <input name="utm_content"/></body></html>
