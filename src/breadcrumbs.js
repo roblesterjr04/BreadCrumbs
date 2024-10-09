@@ -7,6 +7,11 @@ class breadcrumbs extends EventTarget {
 		this.config = config;
 		this.current = this.hydrate();
 	}
+	
+	options(options) {
+		const config = this.config;
+		this.config = {...config, ...options};
+	}
 
 	hydrate() {
 		const saved = Cookies.get(this.config.cookieName);
