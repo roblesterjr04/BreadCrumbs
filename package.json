@@ -6,7 +6,13 @@
     "build": "webpack",
     "start": "webpack serve --open"
   },
-  "keywords": [],
+  "keywords": [
+    "first-party",
+    "cookies",
+    "gdpr",
+    "tracking",
+    "parameters"
+  ],
   "author": "",
   "license": "MIT",
   "description": "",
