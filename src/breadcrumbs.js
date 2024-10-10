@@ -46,8 +46,12 @@ class breadcrumbs extends EventTarget {
 		this.dispatchEvent(event);
 		return this.update();
 	}
+	
+	get(key) {
+		return this.current[key] || null;
+	}
 
-	formfill() {
+	formfill(populateIfBlank = false) {
 		for (const key in this.current) {
 			if (this.current.hasOwnProperty(key)) {
 				// Select all form fields with the matching name attribute
@@ -55,6 +59,11 @@ class breadcrumbs extends EventTarget {
 
 				formFields.forEach(field => {
 					const value = this.current[key];
+					
+					if (populateIfBlank && field.value) {
+						// Skip field if it already has a value
+						return;
+					}
 
 					if (field.type === 'checkbox' || field.type === 'radio') {
 						// For checkboxes or radio buttons, set checked status
