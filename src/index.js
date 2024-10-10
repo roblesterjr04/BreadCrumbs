@@ -2,6 +2,7 @@ import breadcrumbs from './breadcrumbs';
 const getParameter = require('get-parameter');
 
 const baseConfig = {
+	path: '/',
 	cookieName: '_hansel',
 	formfill: false,
 	watching: [
